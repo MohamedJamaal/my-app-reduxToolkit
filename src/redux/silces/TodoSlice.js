@@ -7,7 +7,7 @@ const TodoSlice = createSlice({
     todos: [],
   },
   reducers: {
-    addTodo: async (state, action) => {
+    addTodo: (state, action) => {
       const { title, description } = action.payload;
       if (title) {
         const singleTodo = {
@@ -16,9 +16,7 @@ const TodoSlice = createSlice({
           title,
           description,
         };
-        // const allTodos = [...state.todos, singleTodo];
-        // state.todos = [...allTodos];
-        await AsyncStorage('todos', JSON.stringify(singleTodo));
+        const allTodos = [...state.todos, singleTodo];
         state.todos = [...allTodos];
       }
     },
